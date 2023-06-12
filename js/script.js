@@ -1,18 +1,27 @@
 const hamburger = document.querySelector('.hamburger'),
       menu = document.querySelector('.menu'),
       closeElem = document.querySelector('.menu__close'),
+      menuOverlay = document.querySelector('.menu__overlay'),
       menuList = document.querySelector('.menu__list');
 
 hamburger.addEventListener('click', () => {
     menu.classList.add('active');
+    document.body.style.overflow = "hidden";
 });
 
-closeElem.addEventListener('click', () => {
+function closeMenu() {
     menu.classList.remove('active');
-});
+    document.body.style.overflow = ""; 
+}
 
-menuList.addEventListener('click', () => {
-    menu.classList.remove('active');
+closeElem.addEventListener('click', closeMenu);
+
+menuList.addEventListener('click', closeMenu);
+
+menu.addEventListener('click', (e) => {
+    if (e.target === menuOverlay) {
+        closeMenu();
+    }
 });
 
 const counters = document.querySelectorAll('.progress__counter'),
