@@ -18,6 +18,12 @@ closeElem.addEventListener('click', closeMenu);
 
 menuList.addEventListener('click', closeMenu);
 
+document.addEventListener('keydown', (e) => {
+    if (e.code === "Escape" && menu.classList.contains('active')) {
+        closeMenu();
+    }
+});
+
 menu.addEventListener('click', (e) => {
     if (e.target === menuOverlay) {
         closeMenu();
